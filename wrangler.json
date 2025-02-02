@@ -1,9 +1,15 @@
 {
-  "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "super-surf-80fe",
-  "main": "src/index.ts",
-  "compatibility_date": "2025-01-29",
-  "observability": {
-    "enabled": true
-  }
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "super-surf-80fe",
+	"main": "src/index.ts",
+	"compatibility_date": "2025-01-29",
+	"observability": {
+		"enabled": true
+	},
+	"kv_namespaces": [
+		{
+			"binding": "GITHUB_KV",
+			"id": "9fbaf1dfce0448ae8574344aa5d2c143"
+		}
+	]
 }
