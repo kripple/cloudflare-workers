@@ -13,6 +13,18 @@
 
 export default {
 	async fetch(request, env, ctx): Promise<Response> {
-		return new Response('Hello, Worlds!');
+		try {
+			const value = await env.GITHUB_KV.list();
+
+			return new Response(JSON.stringify(value.keys), {
+				status: 200,
+			});
+		} catch (error) {
+			if (error instanceof Error) {
+				return new Response(error.message, { status: 500 });
+			} else {
+				return new Response('An unknown error occurred', { status: 500 });
+			}
+		}
 	},
 } satisfies ExportedHandler<Env>;
