@@ -13,10 +13,17 @@
     "test": "vitest",
     "cf-typegen": "wrangler types"
   },
+  "dependencies": {
+    "@remix-run/cloudflare": "2.15.2",
+    "@remix-run/react": "2.15.2",
+    "@remix-run/server-runtime": "2.15.2",
+    "isbot": "4.1.0"
+  },
   "devDependencies": {
-    "@types/node": "22.13.0",
     "@cloudflare/vitest-pool-workers": "0.6.4",
     "@cloudflare/workers-types": "4.20250129.0",
+    "@remix-run/dev": "2.15.2",
+    "@types/node": "22.13.0",
     "typescript": "5.5.2",
     "vitest": "2.1.8",
     "wrangler": "3.107.2"

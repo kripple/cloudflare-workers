@@ -1,0 +1,35 @@
+# Cloudflare Workers
+
+This project is built using Cloudflare Workers.
+
+## Development
+
+To start the development server, run the following command:
+
+```bash
+npm run dev
+```
+
+Once the development server is running, open a browser tab and navigate to `http://localhost:8787/` to see your worker in action.
+
+### Regenerate Type Definitions
+
+After adding bindings, you can regenerate a type definition for the `Env` object by running the following command:
+
+```bash
+npm run cf-typegen
+```
+
+This ensures that your code has accurate type information for the resources you've bound to your worker.
+
+## Deployment
+
+To deploy your worker to Cloudflare, run the following command:
+
+```bash
+npm run deploy
+```
+
+## Learn More
+
+For more information, check out the official [Cloudflare Workers Documentation](https://developers.cloudflare.com/workers/).
