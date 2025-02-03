@@ -16,8 +16,24 @@ export default {
 		try {
 			const value = await env.GITHUB_KV.list();
 
+			const headers = {
+				'Access-Control-Allow-Origin': '*',
+				'Access-Control-Allow-Methods': 'GET, PUT',
+				'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+				'Access-Control-Allow-Credentials': 'true',
+			};
+
+			// Handle OPTIONS requests for preflight CORS
+			if (request.method === 'OPTIONS') {
+				return new Response(null, { status: 204, headers });
+			}
+
 			return new Response(JSON.stringify(value.keys), {
 				status: 200,
+        headers: {
+          ...headers,
+          'Content-Type': 'application/json',
+        },
 			});
 		} catch (error) {
 			if (error instanceof Error) {
