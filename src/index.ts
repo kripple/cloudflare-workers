@@ -2,6 +2,7 @@ import { getResource } from './resource';
 import { endpoints } from './endpoints';
 import { getPathResource } from './url';
 import { isResource, type Resource } from './resource';
+import { request as octokit } from '@octokit/request';
 
 function getPath(request: Request): Resource | undefined {
 	const url = new URL(request.url);
@@ -12,16 +13,13 @@ function getPath(request: Request): Resource | undefined {
 export default {
 	async fetch(request, env, ctx): Promise<Response> {
 		try {
-			// THIS IS A TEST
-			const url = new URL(request.url);
-			const pathname = new URL(url).pathname;
-			const response = await fetch(`https://${pathname}`, {
-				headers: { Authorization: `Bearer ${env.GITHUB_API_KEY}` },
+			const result = await octokit('GET /users/kripple', {
+				headers: {
+					authorization: `token ${env.GITHUB_API_KEY}`,
+				},
+				type: 'public',
 			});
-			const json = await response.json();
-			// THIS IS A TEST
-
-			return new Response(JSON.stringify(json), { status: 200 });
+			return new Response(JSON.stringify(result), { status: 200 });
 		} catch (error) {
 			if (error instanceof Error) {
 				return new Response(error.message, { status: 500 });
