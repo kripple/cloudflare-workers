@@ -11,11 +11,19 @@ function getPath(request: Request): Resource | undefined {
 
 export default {
 	async fetch(request, env, ctx): Promise<Response> {
-		const response = await fetch(endpoints.profile(), {
-			headers: { Authorization: `Bearer ${env.GITHUB_API_KEY}` },
-		});
-		const json = await response.json();
-		return new Response(json as any, { status: 200 });
+		try {
+			const response = await fetch(endpoints.profile(), {
+				headers: { Authorization: `Bearer ${env.GITHUB_API_KEY}` },
+			});
+			const json = await response.json();
+			return new Response(json as any, { status: 200 });
+		} catch (error) {
+			if (error instanceof Error) {
+				return new Response(error.message, { status: 500 });
+			} else {
+				return new Response('An unknown error occurred', { status: 500 });
+			}
+		}
 
 		// try {
 		// 	const path = getPath(request);
