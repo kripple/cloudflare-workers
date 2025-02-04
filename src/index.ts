@@ -14,7 +14,7 @@ export default {
 				case '/repos':
 					return getRepos();
 				default:
-					return new Response('Not Found', { status: 404 });
+					return new Response(JSON.stringify({ error: 'Not Found' }), { status: 404 });
 			}
 
 			// const value = await env.GITHUB_KV.list();
