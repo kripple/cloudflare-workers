@@ -15,8 +15,8 @@ export default {
 			const response = await fetch(endpoints.profile(), {
 				headers: { Authorization: `Bearer ${env.GITHUB_API_KEY}` },
 			});
-			const json = await response.json();
-			return new Response(json as any, { status: 200 });
+			// const json = await response.json();
+			return new Response(JSON.stringify(response), { status: 200 });
 		} catch (error) {
 			if (error instanceof Error) {
 				return new Response(error.message, { status: 500 });
