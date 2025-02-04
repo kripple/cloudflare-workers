@@ -11,5 +11,19 @@
 			"binding": "GITHUB_KV",
 			"id": "9fbaf1dfce0448ae8574344aa5d2c143"
 		}
+	],
+	"routes": [
+		{
+			"pattern": "api.kellyripple.com/avatar",
+			"custom_domain": true
+		},
+		{
+			"pattern": "api.kellyripple.com/profile",
+			"custom_domain": true
+		},
+		{
+			"pattern": "api.kellyripple.com/repos",
+			"custom_domain": true
+		}
 	]
 }

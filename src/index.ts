@@ -1,40 +1,43 @@
-/**
- * Welcome to Cloudflare Workers! This is your first worker.
- *
- * - Run `npm run dev` in your terminal to start a development server
- * - Open a browser tab at http://localhost:8787/ to see your worker in action
- * - Run `npm run deploy` to publish your worker
- *
- * Bind resources to your worker in `wrangler.json`. After adding bindings, a type definition for the
- * `Env` object can be regenerated with `npm run cf-typegen`.
- *
- * Learn more at https://developers.cloudflare.com/workers/
- */
+import { getProfile } from './profile';
+import { getRepos } from './repos';
+import { getAvatar } from './avatar';
 
 export default {
 	async fetch(request, env, ctx): Promise<Response> {
+		const url = new URL(request.url);
 		try {
-			const value = await env.GITHUB_KV.list();
-
-			const headers = {
-				'Access-Control-Allow-Origin': '*',
-				'Access-Control-Allow-Methods': 'GET, PUT',
-				'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-				'Access-Control-Allow-Credentials': 'true',
-			};
-
-			// Handle OPTIONS requests for preflight CORS
-			if (request.method === 'OPTIONS') {
-				return new Response(null, { status: 204, headers });
+			switch (url.pathname) {
+				case '/avatar':
+					return getAvatar();
+				case '/profile':
+					return getProfile();
+				case '/repos':
+					return getRepos();
+				default:
+					return new Response('Not Found', { status: 404 });
 			}
 
-			return new Response(JSON.stringify(value.keys), {
-				status: 200,
-        headers: {
-          ...headers,
-          'Content-Type': 'application/json',
-        },
-			});
+			// const value = await env.GITHUB_KV.list();
+
+			// const headers = {
+			// 	'Access-Control-Allow-Origin': '*',
+			// 	'Access-Control-Allow-Methods': 'POST, GET, OPTIONS, HEAD',
+			// 	'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+			// 	'Access-Control-Allow-Credentials': 'true',
+			// };
+
+			// // Handle preflight requests
+			// if (request.method === 'OPTIONS') {
+			// 	return new Response(null, { status: 204, headers });
+			// }
+
+			// return new Response(JSON.stringify(value.keys), {
+			// 	status: 200,
+			// 	headers: {
+			// 		...headers,
+			// 		'Content-Type': ContentType.JSON,
+			// 	},
+			// });
 		} catch (error) {
 			if (error instanceof Error) {
 				return new Response(error.message, { status: 500 });
