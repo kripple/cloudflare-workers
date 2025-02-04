@@ -6,7 +6,7 @@ export async function getResource(name: 'avatar' | 'profile' | 'repos', env: Env
 		let cursor: string | undefined;
 
 		const value = await env.GITHUB_KV.list({ cursor, prefix: name });
-		keys.push(value.keys);
+		keys.push(...value.keys);
 
 		if (!value.list_complete) {
 			cursor = value.cursor;
