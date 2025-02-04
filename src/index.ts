@@ -17,12 +17,11 @@ export default {
 				headers: {
 					authorization: `Bearer ${env.GITHUB_API_KEY}`,
 				},
-				type: 'public',
 			});
 			return new Response(JSON.stringify(result), { status: 200 });
 		} catch (error) {
 			if (error instanceof Error) {
-				return new Response(error.message, { status: 500 });
+				return new Response(`${error.name}: ${error.message}\n${JSON.stringify(error.stack)}`, { status: 500 });
 			} else {
 				return new Response('An unknown error occurred', { status: 500 });
 			}
