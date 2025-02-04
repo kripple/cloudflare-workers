@@ -9,10 +9,16 @@
 		/* Specify what JSX code is generated. */
 		"jsx": "react-jsx",
 
+		/* Required for octokit conditional exports:
+        "module": "node16",
+        "moduleResolution": "node16",
+    */
+
 		/* Specify what module code is generated. */
-		"module": "es2022",
+		"module": "node16",
 		/* Specify how TypeScript looks up a file from a given module specifier. */
-		"moduleResolution": "Bundler",
+		"moduleResolution": "node16",
+
 		/* Specify type package names to be included without being referenced in a source file. */
 		"types": ["@cloudflare/workers-types/2023-07-01"],
 		/* Enable importing .json files */
