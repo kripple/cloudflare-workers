@@ -15,7 +15,7 @@ export default {
 			headers: { Authorization: `Bearer ${env.GITHUB_API_KEY}` },
 		});
 		const json = await response.json();
-		return new Response(json as any, { status: 404 });
+		return new Response(json as any, { status: 200 });
 
 		// try {
 		// 	const path = getPath(request);
