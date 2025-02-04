@@ -1,4 +1,10 @@
-export async function getResource(name: 'avatar' | 'profile' | 'repos', env: Env) {
+const resources = ['avatar', 'profile', 'repos'] as const;
+export type Resource = Union<typeof resources>;
+export function isResource(value: string): value is Resource {
+	return (resources as readonly string[]).includes(value);
+}
+
+export async function getResource(name: Resource, env: Env) {
 	let complete: boolean = false;
 	const keys: any[] = [];
 
