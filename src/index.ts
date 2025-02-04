@@ -1,6 +1,4 @@
-import { getProfile } from './profile';
-import { getRepos } from './repos';
-import { getAvatar } from './avatar';
+import { getResource } from './resource';
 
 export default {
 	async fetch(request, env, ctx): Promise<Response> {
@@ -8,16 +6,14 @@ export default {
 		try {
 			switch (url.pathname) {
 				case '/avatar':
-					return getAvatar(env);
+					return getResource('avatar', env);
 				case '/profile':
-					return getProfile(env);
+					return getResource('profile', env);
 				case '/repos':
-					return getRepos(env);
+					return getResource('repos', env);
 				default:
 					return new Response(JSON.stringify({ error: 'Not Found' }), { status: 404 });
 			}
-
-			
 
 			// const headers = {
 			// 	'Access-Control-Allow-Origin': '*',
