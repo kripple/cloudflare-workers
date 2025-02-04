@@ -2,5 +2,5 @@
 
 interface Env {
 	GITHUB_KV: KVNamespace;
-  GITHUB_API_KEY: string;
+	GITHUB_API_TOKEN: "GITHUB_API_TOKEN";
 }

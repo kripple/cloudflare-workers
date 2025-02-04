@@ -12,21 +12,21 @@ function getPath(request: Request): Resource | undefined {
 
 export default {
 	async fetch(request, env, ctx): Promise<Response> {
-    return new Response(env.THIS_IS_A_TEST, { status: 200 });
-		// try {
-		// 	const result = await octokit('GET /users/kripple', {
-		// 		headers: {
-		// 			authorization: `Bearer ${env.GITHUB_API_KEY}`,
-		// 		},
-		// 	});
-		// 	return new Response(JSON.stringify(result), { status: 200 });
-		// } catch (error) {
-		// 	if (error instanceof Error) {
-		// 		return new Response(`${error.name}: ${error.message}\n${JSON.stringify(error.stack)}`, { status: 500 });
-		// 	} else {
-		// 		return new Response('An unknown error occurred', { status: 500 });
-		// 	}
-		// }
+
+		try {
+			const result = await octokit('GET /users/kripple', {
+				headers: {
+					authorization: `Bearer ${env.GITHUB_API_TOKEN}`,
+				},
+			});
+			return new Response(JSON.stringify(result), { status: 200 });
+		} catch (error) {
+			if (error instanceof Error) {
+				return new Response(`${error.name}: ${error.message}\n${JSON.stringify(error.stack)}`, { status: 500 });
+			} else {
+				return new Response('An unknown error occurred', { status: 500 });
+			}
+		}
 
 		// try {
 		// 	const path = getPath(request);
