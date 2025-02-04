@@ -15,7 +15,7 @@ export default {
 		try {
 			const result = await octokit('GET /users/kripple', {
 				headers: {
-					authorization: `token ${env.GITHUB_API_KEY}`,
+					authorization: `Bearer ${env.GITHUB_API_KEY}`,
 				},
 				type: 'public',
 			});
