@@ -11,24 +11,21 @@ function getPath(request: Request): Resource | undefined {
 
 export default {
 	async fetch(request, env, ctx): Promise<Response> {
-		// const { Octokit } = await import('octokit');
-		// const octokit = new Octokit({ auth: env.GITHUB_API_KEY, userAgent: 'cloudflare-worker' });
+		const response = await fetch(endpoints.profile(), {
+			headers: { Authorization: `Bearer ${env.GITHUB_API_KEY}` },
+		});
+		const json = await response.json();
+		return new Response(json as any, { status: 404 });
 
-		// const {
-		// 	data: { login },
-		// } = await octokit.rest.users.getAuthenticated();
-
-		// return new Response(`Hello, ${login}!`, { status: 200 });
-
-		try {
-			const path = getPath(request);
-			return path ? getResource(path, env) : new Response(JSON.stringify({ error: 'Not Found' }), { status: 404 });
-		} catch (error) {
-			if (error instanceof Error) {
-				return new Response(error.message, { status: 500 });
-			} else {
-				return new Response('An unknown error occurred', { status: 500 });
-			}
-		}
+		// try {
+		// 	const path = getPath(request);
+		// 	return path ? getResource(path, env) : new Response(JSON.stringify({ error: 'Not Found' }), { status: 404 });
+		// } catch (error) {
+		// 	if (error instanceof Error) {
+		// 		return new Response(error.message, { status: 500 });
+		// 	} else {
+		// 		return new Response('An unknown error occurred', { status: 500 });
+		// 	}
+		// }
 	},
 } satisfies ExportedHandler<Env>;
