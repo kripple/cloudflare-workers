@@ -14,15 +14,7 @@
 	],
 	"routes": [
 		{
-			"pattern": "api.kellyripple.com/avatar",
-			"custom_domain": true
-		},
-		{
-			"pattern": "api.kellyripple.com/profile",
-			"custom_domain": true
-		},
-		{
-			"pattern": "api.kellyripple.com/repos",
+			"pattern": "api.kellyripple.com",
 			"custom_domain": true
 		}
 	]
