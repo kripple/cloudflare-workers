@@ -12,9 +12,14 @@ function getPath(request: Request): Resource | undefined {
 export default {
 	async fetch(request, env, ctx): Promise<Response> {
 		try {
-			const response = await fetch(endpoints.profile(), {
+			// THIS IS A TEST
+			const url = new URL(request.url);
+			const pathname = new URL(url).pathname;
+			const response = await fetch(`https://${pathname}`, {
 				headers: { Authorization: `Bearer ${env.GITHUB_API_KEY}` },
 			});
+			// THIS IS A TEST
+
 			// const json = await response.json();
 			return new Response(JSON.stringify(response), { status: 200 });
 		} catch (error) {
