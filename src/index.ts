@@ -8,16 +8,16 @@ export default {
 		try {
 			switch (url.pathname) {
 				case '/avatar':
-					return getAvatar();
+					return getAvatar(env);
 				case '/profile':
-					return getProfile();
+					return getProfile(env);
 				case '/repos':
-					return getRepos();
+					return getRepos(env);
 				default:
 					return new Response(JSON.stringify({ error: 'Not Found' }), { status: 404 });
 			}
 
-			// const value = await env.GITHUB_KV.list();
+			
 
 			// const headers = {
 			// 	'Access-Control-Allow-Origin': '*',
