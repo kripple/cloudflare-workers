@@ -14,26 +14,6 @@ export default {
 				default:
 					return new Response(JSON.stringify({ error: 'Not Found' }), { status: 404 });
 			}
-
-			// const headers = {
-			// 	'Access-Control-Allow-Origin': '*',
-			// 	'Access-Control-Allow-Methods': 'POST, GET, OPTIONS, HEAD',
-			// 	'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-			// 	'Access-Control-Allow-Credentials': 'true',
-			// };
-
-			// // Handle preflight requests
-			// if (request.method === 'OPTIONS') {
-			// 	return new Response(null, { status: 204, headers });
-			// }
-
-			// return new Response(JSON.stringify(value.keys), {
-			// 	status: 200,
-			// 	headers: {
-			// 		...headers,
-			// 		'Content-Type': ContentType.JSON,
-			// 	},
-			// });
 		} catch (error) {
 			if (error instanceof Error) {
 				return new Response(error.message, { status: 500 });
