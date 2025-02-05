@@ -2,6 +2,10 @@ import { describe, it, expect, vi } from 'vitest';
 import { getRoute } from './routes';
 import { isRoute, routes } from './routes';
 
+const testEnv = {
+	MODE: 'test',
+} as Env;
+
 describe('isRoute', () => {
 	routes.map((validRoute) => {
 		it(`should return true for valid route "${validRoute}"`, () => {
@@ -35,7 +39,7 @@ describe('getRoute', () => {
 	routes.map((validRoute) => {
 		it(`should return the route for valid route "${validRoute}"`, () => {
 			const mockRequest = { url: `https://api.example.com/${validRoute}` } as Request;
-			const result = getRoute(mockRequest);
+			const result = getRoute(mockRequest, testEnv);
 			expect(result).toBe(validRoute);
 		});
 	});
@@ -44,14 +48,21 @@ describe('getRoute', () => {
 		const invalidRoute = 'invalid-route';
 		const mockRequest = { url: `https://api.example.com/${invalidRoute}` } as Request;
 
-		const result = getRoute(mockRequest);
+		const result = getRoute(mockRequest, testEnv);
 		expect(result).toBeUndefined();
 	});
 
 	it('should handle edge case when pathname is empty', () => {
 		const mockRequest = { url: 'https://api.example.com' } as Request;
 
-		const result = getRoute(mockRequest);
+		const result = getRoute(mockRequest, testEnv);
+		expect(result).toBeUndefined();
+	});
+
+	it('should handle edge case when url is missing', () => {
+		const mockRequest = {} as Request;
+
+		const result = getRoute(mockRequest, testEnv);
 		expect(result).toBeUndefined();
 	});
 });

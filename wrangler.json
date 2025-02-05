@@ -22,7 +22,18 @@
 	"env": {
 		"production": {
 			"vars": {
-				"GITHUB_API_TOKEN": "GITHUB_API_TOKEN"
+				"GITHUB_API_TOKEN": "GITHUB_API_TOKEN",
+				"MODE": "production"
+			}
+		},
+		"development": {
+			"vars": {
+				"MODE": "development"
+			}
+		},
+		"test": {
+			"vars": {
+				"MODE": "test"
 			}
 		}
 	}

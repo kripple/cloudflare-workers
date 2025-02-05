@@ -6,7 +6,7 @@ import { getRepos } from './handlers/repos';
 export default {
 	async fetch(request, env, _ctx): Promise<Response> {
 		try {
-			const route = getRoute(request);
+			const route = getRoute(request, env);
 			switch (route) {
 				case 'languages': {
 					return getLanguages(request, env);
