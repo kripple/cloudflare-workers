@@ -1,8 +1,7 @@
 import { request } from '@octokit/request';
 import { config } from '../config';
 import { headers } from '../utils/request';
-import { ErrorResponse } from '../utils/errors';
-import { isProd } from '../utils/env';
+import { handleError } from '../utils/errors';
 
 export async function getRepos(req: Request, env: Env) {
 	try {
@@ -27,10 +26,6 @@ export async function getRepos(req: Request, env: Env) {
 
 		return new Response(JSON.stringify(data), { status: 200 });
 	} catch (error) {
-		if (!isProd(env) && error instanceof Error) {
-			return new Response(`${error.name}: ${error.message}\n${JSON.stringify(error.stack)}`, { status: 500 });
-		} else {
-			return ErrorResponse(500);
-		}
+		return handleError({ error, env });
 	}
 }
