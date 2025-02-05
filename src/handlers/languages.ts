@@ -6,7 +6,8 @@ import { ErrorResponse } from '../utils/errors';
 
 export async function getLanguages(req: Request, env: Env) {
 	try {
-		const { params } = match('/languages/:repo', req.url);
+		const url = new URL(req.url);
+		const { params } = match('/languages/:repo', url.pathname);
 		const repo = params?.repo;
 		if (!repo) return ErrorResponse(404);
     
