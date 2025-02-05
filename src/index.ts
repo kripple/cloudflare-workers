@@ -7,7 +7,6 @@ export default {
 	async fetch(request, env, _ctx): Promise<Response> {
 		try {
 			const route = getRoute(request);
-			if (!route) return new Response(JSON.stringify({ error: 'Not Found' }), { status: 404 });
 			switch (route) {
 				case 'languages': {
 					return getLanguages(request, env);
@@ -19,7 +18,7 @@ export default {
 					return getRepos(request, env);
 				}
 				default: {
-					return new Response(`${route} route not yet implemented`, { status: 200 });
+					return new Response(JSON.stringify({ error: 'Not Found' }), { status: 404 });
 				}
 			}
 		} catch (error) {
