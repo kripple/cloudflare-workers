@@ -1,6 +1,7 @@
 import { request } from '@octokit/request';
 import { config } from '../config';
 import { headers } from '../utils/request';
+import { ErrorResponse } from '../utils/errors';
 
 export async function getRepos(req: Request, env: Env) {
 	try {
@@ -28,7 +29,7 @@ export async function getRepos(req: Request, env: Env) {
 		if (error instanceof Error) {
 			return new Response(`${error.name}: ${error.message}\n${JSON.stringify(error.stack)}`, { status: 500 });
 		} else {
-			return new Response('An unknown error occurred', { status: 500 });
+			return ErrorResponse(500);
 		}
 	}
 }
