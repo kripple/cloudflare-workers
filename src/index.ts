@@ -5,7 +5,7 @@
 
 export default {
 	async fetch(request, env, _ctx): Promise<Response> {
-		return new Response('success', { status: 200 });
+		return new Response(JSON.stringify({ requestUrl: request.url }), { status: 200 });
 		// try {
 		// 	const route = getRoute(request);
 		// 	switch (route) {
