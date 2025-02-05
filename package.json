@@ -14,7 +14,8 @@
 		"cf-typegen": "wrangler types"
 	},
 	"dependencies": {
-		"@octokit/request": "9.2.0"
+		"@octokit/request": "9.2.0",
+		"node-match-path": "0.6.3"
 	},
 	"devDependencies": {
 		"@cloudflare/vitest-pool-workers": "0.6.4",
