@@ -7,28 +7,24 @@ This project is built using Cloudflare Workers.
 To start the development server, run the following command:
 
 ```bash
-npm run dev
+npm run start
 ```
 
-Once the development server is running, open a browser tab and navigate to `http://localhost:8787/` to see your worker in action.
+The development server will be accessible at `http://localhost:8787/`.
 
 ### Regenerate Type Definitions
 
 After adding bindings, you can regenerate a type definition for the `Env` object by running the following command:
 
 ```bash
-npm run cf-typegen
+npm run typegen
 ```
 
 This ensures that your code has accurate type information for the resources you've bound to your worker.
 
 ## Deployment
 
-To deploy your worker to Cloudflare, run the following command:
-
-```bash
-npm run deploy
-```
+The `main` branch is deployed automatically.
 
 ## Learn More
 
