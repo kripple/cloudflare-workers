@@ -22,6 +22,7 @@
 	"env": {
 		"production": {
 			"vars": {
+				"DICTIONARY_API_KEY": "DICTIONARY_API_KEY",
 				"GITHUB_API_TOKEN": "GITHUB_API_TOKEN",
 				"MODE": "production"
 			}

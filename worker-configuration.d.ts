@@ -2,6 +2,7 @@
 
 interface Env {
 	GITHUB_KV: KVNamespace;
+	DICTIONARY_API_KEY: "DICTIONARY_API_KEY";
 	GITHUB_API_TOKEN: "GITHUB_API_TOKEN";
 	MODE: "production" | "development" | "test";
 }
