@@ -9,7 +9,8 @@ export async function getDictionary(req: Request, env: Env) {
 		const word = params?.word;
 		if (!word) return ErrorResponse(404);
 		const result = await fetch(`https://www.dictionaryapi.com/api/v3/references/collegiate/json/${word}?key=${env.DICTIONARY_API_KEY}`);
-		return new Response(JSON.stringify(result), { status: 200 });
+		const text = await result.text();
+		return new Response(text, { status: 200 });
 	} catch (error) {
 		return handleError({ error, env });
 	}
