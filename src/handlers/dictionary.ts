@@ -10,7 +10,12 @@ export async function getDictionary(req: Request, env: Env) {
 		if (!word) return ErrorResponse(404);
 		const result = await fetch(`https://www.dictionaryapi.com/api/v3/references/collegiate/json/${word}?key=${env.DICTIONARY_API_KEY}`);
 		const text = await result.text();
-		return new Response(text, { status: 200 });
+		return new Response(text, {
+			status: result.status,
+			headers: {
+				'Access-Control-Allow-Origin': '*',
+			},
+		});
 	} catch (error) {
 		return handleError({ error, env });
 	}
